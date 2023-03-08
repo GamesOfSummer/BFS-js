@@ -176,41 +176,21 @@ export class AVLTree {
     }
 }
 
-const preorderTraverse = (node: Node, array: number[]): number[] => {
-    if (!node) {
-        return array;
-    } else {
+const breadthFirstSearch = (tree: any, array: number[]): number[] => {
+    while (tree.length) {
+        const node = tree.shift();
         array.push(node.data);
 
-        array = preorderTraverse(node.left, array);
-        array = preorderTraverse(node.right, array);
+        if (node.left) {
+            tree.push(node.left);
+        }
 
-        return array;
+        if (node.right) {
+            tree.push(node.right);
+        }
     }
-};
 
-const inorderTraverse = (node: Node, array: number[]): number[] => {
-    if (!node) {
-        return array;
-    } else {
-        array = inorderTraverse(node.left, array);
-        array.push(node.data);
-        array = inorderTraverse(node.right, array);
-
-        return array;
-    }
-};
-
-const postorderTraverse = (node: Node, array: number[]): number[] => {
-    if (!node) {
-        return array;
-    } else {
-        array = postorderTraverse(node.left, array);
-        array = postorderTraverse(node.right, array);
-        array.push(node.data);
-
-        return array;
-    }
+    return array;
 };
 
 consoleStart();
@@ -222,9 +202,7 @@ const tree2 = tree;
 
 const objs = tree.toObject();
 
-validateFxn(preorderTraverse(tree.root, []), []);
-validateFxn(inorderTraverse(tree.root, []), []);
-validateFxn(postorderTraverse(tree.root, []), []);
+validateFxn(breadthFirstSearch([tree], []), []);
 
 consoleEnd();
 consoleBuffer();
