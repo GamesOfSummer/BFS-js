@@ -202,7 +202,10 @@ const tree2 = tree;
 
 const objs = tree.toObject();
 
-validateFxn(breadthFirstSearch([tree], []), []);
+validateFxn(
+    breadthFirstSearch([objs], []),
+    [7, 4, 10, 3, 5, 8, 12, 2, 6, 9, 11]
+);
 
 consoleEnd();
 consoleBuffer();
